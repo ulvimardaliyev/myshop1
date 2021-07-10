@@ -2,22 +2,19 @@ package webservlets;
 
 import dbconnection.sqlqueries.Insert;
 import dbconnection.sqlqueries.Select;
+import validation.ValidateUserDetails;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 @WebServlet(value = "/create")
 public class CreateUserProfile extends HttpServlet {
 
-    private static final Pattern VALID_PASSWORD =
-            Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=*])(?=\\S+$).{8,}$");
-    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,7 +22,7 @@ public class CreateUserProfile extends HttpServlet {
         String password = req.getParameter("pass");
         String email = req.getParameter("email");
 
-        if (validateEmail(email) && validatePassword(password)) {
+        if (ValidateUserDetails.validate(email, password)) {
             Select selectUser = new Select();
             if (selectUser.hasUserOnDb(username, email)) {
                 resp.getWriter().write("<p style=\"color:red\">" + " This user is already registered" + "</p>");
@@ -51,16 +48,5 @@ public class CreateUserProfile extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("signup.jsp");
             requestDispatcher.include(req, resp);
         }
-
-    }
-
-    private static boolean validatePassword(String pass) {
-        Matcher matcher = VALID_PASSWORD.matcher(pass);
-        return matcher.find();
-    }
-
-    private static boolean validateEmail(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
     }
 }
