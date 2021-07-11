@@ -1,0 +1,14 @@
+.topnav {
+    background-color: green;
+    margin: 15px;
+    overflow: visible;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.home{
+    flex: 1 1 auto;
+}
+.login{
+    flex-basis: 100px;
+}

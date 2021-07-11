@@ -14,8 +14,6 @@ import java.io.IOException;
 @WebServlet(value = "/create")
 public class CreateUserProfile extends HttpServlet {
 
-
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
