@@ -9,10 +9,8 @@ import java.sql.SQLException;
 
 public class Select {
     //Object ile istifade etmek olar parametr gondermekcun
-
-
     public boolean hasUserOnDb(String username, String email) {
-        String selectUserQuery = "Select username, email FROM user where username=? and email=?";
+        String selectUserQuery = "Select username, email FROM user where username=? or email=?";
         boolean isUserOnDB = false;
         Connection connection = new ConnectionToDatabase().getConnection();
 
@@ -22,26 +20,21 @@ public class Select {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, email);
             preparedStatement.execute();
-            String usernameFromDB = null;
-            String emailFromDB = null;
 
-            ResultSet set = preparedStatement.executeQuery();
-            for (int i = 1; set.next(); i++) {
-                switch (i) {
-                    case 1:
-                        usernameFromDB = set.getString(i);
-                        break;
-                    case 2:
-                        emailFromDB = set.getString(i);
-                        break;
-                    default:
-                        isUserOnDB = false;
-                        break;
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+
+                if (resultSet.getString("username").equals(username)) {
+                    isUserOnDB = true;
+                    System.out.println("isUserOnDB : " + isUserOnDB);
+                } else if (resultSet.getString("email").equals(email)) {
+                    isUserOnDB = true;
+                    System.out.println("isUserOnDB : " + isUserOnDB);
                 }
             }
-            if (email.equals(emailFromDB) || username.equals(usernameFromDB)) {
-                isUserOnDB = true;
-            }
+            preparedStatement.close();
+            resultSet.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,11 +72,12 @@ public class Select {
             if (email.equals(emailFromDB) || password.equals(passwordFromDB)) {
                 isUserOnDB = true;
             }
+            preparedStatement.close();
+            set.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return isUserOnDB;
     }
-
 }

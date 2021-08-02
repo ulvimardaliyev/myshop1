@@ -1,8 +1,6 @@
 package dbconnection;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,7 +12,9 @@ public class ConnectionToDatabase {
 
     public Connection getConnection() {
         Properties properties = new Properties();
-        File file = new File("C:\\Users\\m.ulvi\\IdeaProjects\\myshop1\\src\\main\\webapp\\WEB-INF\\application.properties");
+        File file = new File("C:\\Users\\m.ulvi\\IdeaProjects\\myshop1\\src\\main\\resources\\application.properties");
+        /*InputStream input =
+                getClass().getClassLoader().getResourceAsStream("application.properties");*/
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             FileReader fileReader = new FileReader(file);

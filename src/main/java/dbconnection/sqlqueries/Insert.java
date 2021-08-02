@@ -23,6 +23,7 @@ public class Insert {
             if (result == 1) {
                 isCreated = true;
             }
+            preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();

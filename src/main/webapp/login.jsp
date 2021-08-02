@@ -11,12 +11,31 @@
     <title>Login</title>
 </head>
 <body>
-<form action="/login" method="post">
+<%
+    int defaultUserID = 0;
+    //int userIDFromSession = -1;
+    //String defaultUsername = null;
+    String username = null;
+    Cookie[] cookies = request.getCookies();
+
+    for (Cookie cookie : cookies) {
+        if (cookie.getName().equals("userIDOnDB")) {
+            defaultUserID = Integer.parseInt(cookie.getValue());
+        } else if (cookie.getName().equals("username")) {
+            username = cookie.getValue();
+        }
+    }
+
+    if (defaultUserID > 0 && username != null) {
+        response.sendRedirect("home1.jsp");
+    }
+
+%>
+<form action="login" method="post">
     Enter email <input type="text" name="email"> <br>
-    Enter password <input type="password" name="pass" >
+    Enter password <input type="password" name="pass">
     <input type="submit" value="Log in">
 </form>
-
 Or create account <a href="signup.jsp">Sign up</a>
 </body>
 </html>

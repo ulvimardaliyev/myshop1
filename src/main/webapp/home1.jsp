@@ -1,49 +1,52 @@
 <%--
   Created by IntelliJ IDEA.
   User: m.ulvi
-  Date: 10-Jul-21
-  Time: 16:27
+  Date: 25-Jul-21
+  Time: 18:28
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/normalize.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style1.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous">
-    </script>
+            crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
 
 <body>
+
+<%
+    if (request.getSession().getAttribute("username") == null) {
+        response.sendRedirect("home.jsp");
+    }
+%>
+My sesson id is <%=request.getSession().getId()%>
 <div class="navbar">
+
     <button type="submit">Buttonn</button>
     <div class="homek">
-        <a href="home.jsp"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
+        <a href="home.jsp"><img src="/resources/logo.png"></a>
     </div>
     <nav>
         <ul>
             <li>
-                <a href="home.jsp">Home</a>
+                <a href="home1.jsp">Home</a>
             </li>
             <li>
                 <a href="/about">About</a>
             </li>
             <li>
-                <a href="/basket.jsp">Basket </a>
+                <a href="/basket.jsp">Basket</a>
             </li>
             <li>
-                <a href="/login.jsp">Log in</a>
+                <a href="/logout">Log out</a>
             </li>
             <li>
                 <a href="contact">Contact</a>
@@ -714,11 +717,13 @@
                 </li>
             </ul>
         </div>
-        <div class="col">
+        <div class="col ">
             Column
-
+            <p style="@font-face {
+                font-family: zen,sans-serif;
+    src: url(fonts/Abel-Bold.otf)}; font-family: zen, sans-serif;">ÖMƏR Xəyyam qarğıdalI yeyirmiŞşş</p>
         </div>
-        <div class="col">
+        <div class="col ">
             Column
         </div>
     </div>

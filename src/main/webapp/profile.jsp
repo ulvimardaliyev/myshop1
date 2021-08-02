@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="home.jsp"/>
+
 <html>
 <head>
     <title>Title</title>
@@ -15,42 +15,22 @@
 
 <%
     String username = null;
-    Cookie cookie1[] = request.getCookies();
-    HttpSession session1 = request.getSession(false);
-
-    for (Cookie c : cookie1) {
-        if (c.getName().equals("JSESSIONID")) {
-            if (session1.getId().equals(c.getValue())) {
-                username = (String) session1.getAttribute("username");
-            }
-        }
+    if (session != null) {
+        username = (String) session.getAttribute("username");
+        //response.getWriter().write(session.getId());
     }
     if (username == null) {
-        response.sendRedirect("/login.jsp");
+        response.sendRedirect("login.jsp");
     }
+    System.out.println("username is "+username);
 %>
 
-<%--
-isleyen code
-<%
-    String username = null;
-    Cookie cookie1[] = request.getCookies();
-    HttpSession session1 = request.getSession(false);
-
-
-    for (Cookie c : cookie1) {
-        if (c.getName().equals("JSESSIONID")) {
-            if (session1.getId().equals(c.getValue())) {
-                username = (String) session1.getAttribute("username");
-            }
-        }
-    }
-    if (username == null) {
-        response.sendRedirect("/login.jsp");
-    }
-%>--%>
 
 <p>Hi, <%=username %>
 </p>
+My sesson id is <%=request.getSession().getId()%>
+<jsp:include page="home1.jsp"/>
+
+
 </body>
 </html>

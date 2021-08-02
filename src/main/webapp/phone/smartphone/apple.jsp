@@ -1,40 +1,35 @@
 <%--
   Created by IntelliJ IDEA.
   User: m.ulvi
-  Date: 10-Jul-21
-  Time: 16:27
+  Date: 25-Jul-21
+  Time: 20:25
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
-<html lang="en">
-
+<%--<jsp:include page="${pageContext.request.contextPath}/home.jsp"/>--%>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/normalize.css" type="text/css">
+    <title>Apple</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style1.css" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous">
     </script>
-    <title>Home</title>
 </head>
-
 <body>
+
 <div class="navbar">
     <button type="submit">Buttonn</button>
     <div class="homek">
-        <a href="home.jsp"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
+        <a href="/home.jsp"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
     </div>
     <nav>
         <ul>
             <li>
-                <a href="home.jsp">Home</a>
+                <a href="/home.jsp">Home</a>
             </li>
             <li>
                 <a href="/about">About</a>
@@ -46,13 +41,14 @@
                 <a href="/login.jsp">Log in</a>
             </li>
             <li>
-                <a href="contact">Contact</a>
+                <a href="/contact">Contact</a>
             </li>
         </ul>
     </nav>
 </div>
 <hr>
 <br>
+
 <div class="container-md">
     <div class="row">
         <div class="col">
@@ -715,44 +711,76 @@
             </ul>
         </div>
         <div class="col">
-            Column
+            <div class="card">
+                <form action="/add-to-basket">
+                    <img src="/images/buy-1.jpg">
+                    <h1>Apple 12</h1>
+                    <p class="price">$849.99</p>
+                    <p>It is a leap year</p>
+                    <input type="hidden" name="categoryID" value="1">
+                    <input type="hidden" name="subcategoryID" value="1">
+                    <input type="hidden" name="brandID" value="2">
+                    <input type="hidden" name="desc" value="Apple 12">
+                    <input type="submit" value="Add to cart" class="input">
+                </form>
 
+                <form action="/add-to-basket">
+                    <img src="/images/buy-2.jpg"
+                         alt="Apple 12">
+                    <h1>Apple 12</h1>
+                    <p class="price">$849.99</p>
+                    <p>It is a leap year</p>
+                    <input type="hidden" name="categoryID" value="1">
+                    <input type="hidden" name="subcategoryID" value="1">
+                    <input type="hidden" name="brandID" value="2">
+                    <input type="hidden" name="desc" value="Apple 12">
+                    <input type="submit" value="Add to cart" class="input">
+                </form>
+            </div>
         </div>
         <div class="col">
-            Column
+            <div class="card">
+                <form action="/add-to-basket">
+                    <img src="/images/buy-3.jpg"
+                         alt="Apple 12">
+                    <h1>Apple 12</h1>
+                    <p class="price">$849.99</p>
+                    <p>It is a leap year</p>
+                    <input type="hidden" name="categoryID" value="1">
+                    <input type="hidden" name="subcategoryID" value="1">
+                    <input type="hidden" name="brandID" value="2">
+                    <input type="hidden" name="desc" value="Apple 12">
+                    <input type="submit" value="Add to cart" class="input">
+                </form>
+                <form action="/add-to-basket">
+                    <img src="/images/buy-1.jpg"
+                         alt="Apple 12">
+                    <h1>Apple 12</h1>
+                    <p class="price">$849.99</p>
+                    <p>It is a leap year</p>
+                    <input type="hidden" name="categoryID" value="1">
+                    <input type="hidden" name="subcategoryID" value="1">
+                    <input type="hidden" name="brandID" value="2">
+                    <input type="hidden" name="desc" value="Apple 12">
+                    <input type="submit" value="Add to cart" class="input">
+                </form>
+                <form action="/add-to-basket">
+                    <img src="/images/buy-1.jpg"
+                         alt="Apple 12">
+                    <h1>Apple 12</h1>
+                    <p class="price">$849.99</p>
+                    <p>It is a leap year</p>
+                    <input type="hidden" name="categoryID" value="1">
+                    <input type="hidden" name="subcategoryID" value="1">
+                    <input type="hidden" name="brandID" value="2">
+                    <input type="hidden" name="desc" value="Apple 12">
+                    <input type="submit" value="Add to cart" class="input">
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- <div id="main ">
-<div id="strip ">
-    <ul class="strip ">
-        <li class="test ">
-            <a href="# ">Komputer</a>
-            <ul class="strip1 ">
-                <li class="shrt ">
-                    <a href="# ">Com</a>
-                    <ul class="dropcmpy ">
-                        <li><a href="# ">Key</a>
-                            <ul class="drop-me ">
-                                <li><a href="# ">Ad</a></li>
-                                <li><a href="# ">Fac</a></li>
-                                <li><a href="# ">Car</a></li>
-                                <li><a href="# ">FAQ</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="# ">Ad</a></li>
-                        <li><a href="# ">Fac</a></li>
-                        <li><a href="# ">Car</a></li>
-                        <li><a href="# ">FAQ</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
-</div> -->
 
 </body>
-
 </html>
