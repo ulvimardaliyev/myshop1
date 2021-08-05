@@ -26,6 +26,14 @@
 </head>
 
 <body>
+
+<%
+    String id = (String) session.getAttribute("userIDOnDB");
+    if (id != null && !id.isEmpty()) {
+        response.sendRedirect("home1.jsp");
+    }
+
+%>
 <div class="navbar">
     <button type="submit">Buttonn</button>
     <div class="homek">

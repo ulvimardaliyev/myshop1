@@ -13,14 +13,14 @@
 <body>
 <%
     int defaultUserID = 0;
-    //int userIDFromSession = -1;
-    //String defaultUsername = null;
     String username = null;
     Cookie[] cookies = request.getCookies();
 
     for (Cookie cookie : cookies) {
         if (cookie.getName().equals("userIDOnDB")) {
-            defaultUserID = Integer.parseInt(cookie.getValue());
+            if (cookie.getValue() != null && !cookie.getValue().isEmpty()) {
+                defaultUserID = Integer.parseInt(cookie.getValue());
+            }
         } else if (cookie.getName().equals("username")) {
             username = cookie.getValue();
         }

@@ -1,6 +1,7 @@
 package dbconnection.sqlqueries;
 
 import dbconnection.ConnectionToDatabase;
+import webservlets.TempUserDetails;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,7 +43,9 @@ public class Select {
     }
 
     public boolean forLogin(String email, String password) {
-        String selectUserQuery = "Select password, email FROM user where password=? and email=?";
+        TempUserDetails t1 = TempUserDetails.tempUserDetails();
+        String selectUserQuery = "Select userID, username, email, password" +
+                " FROM user where password=? and email=?";
         boolean isUserOnDB = false;
         Connection connection = new ConnectionToDatabase().getConnection();
 
@@ -52,25 +55,27 @@ public class Select {
             preparedStatement.setString(1, password);
             preparedStatement.setString(2, email);
             preparedStatement.execute();
-            String passwordFromDB = null;
-            String emailFromDB = null;
 
             ResultSet set = preparedStatement.executeQuery();
-            for (int i = 1; set.next(); i++) {
-                switch (i) {
-                    case 1:
-                        passwordFromDB = set.getString(i);
-                        break;
-                    case 2:
-                        emailFromDB = set.getString(i);
-                        break;
-                    default:
-                        isUserOnDB = false;
-                        break;
-                }
+            String usernameFromDB = null;
+            String passwordFromDB = null;
+            int userIDFromDb = 0;
+            String emailFromFromDB = null;
+            while (set.next()) {
+                userIDFromDb = set.getInt("userID");
+                usernameFromDB = set.getString("username");
+                emailFromFromDB = set.getString("email");
+                passwordFromDB = set.getString("password");
             }
-            if (email.equals(emailFromDB) || password.equals(passwordFromDB)) {
+
+            //|| de ola biler
+
+            if (email.equals(emailFromFromDB) && password.equals(passwordFromDB)) {
                 isUserOnDB = true;
+                t1.setEmail(emailFromFromDB);
+                t1.setUsername(usernameFromDB);
+                t1.setId(userIDFromDb);
+                t1.setPassword(passwordFromDB);
             }
             preparedStatement.close();
             set.close();

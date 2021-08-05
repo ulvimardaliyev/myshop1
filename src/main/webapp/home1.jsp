@@ -32,7 +32,7 @@ My sesson id is <%=request.getSession().getId()%>
 
     <button type="submit">Buttonn</button>
     <div class="homek">
-        <a href="home.jsp"><img src="/resources/logo.png"></a>
+        <a href="home1.jsp"><img src="/resources/logo.png"></a>
     </div>
     <nav>
         <ul>
