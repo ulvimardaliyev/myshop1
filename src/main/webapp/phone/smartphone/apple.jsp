@@ -71,7 +71,7 @@
                         <li class="dropdown-content">
                             <a href="#">Smartfonlar</a>
                             <ul class="dropdown-content-1">
-                                <li><a href="phone/smartphone/apple.jsp">Apple</a></li>
+                                <li><a href="/phone/smartphone/apple.jsp">Apple</a></li>
                                 <li><a href="#">Samsung</a></li>
                                 <li><a href="#">Xiaomi</a></li>
                                 <li><a href="#">Oneplus</a></li>
