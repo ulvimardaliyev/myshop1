@@ -2,6 +2,7 @@ package webservlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,25 +14,29 @@ public class AddToBasket extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-/*        String book = req.getParameter("book");
-        int price = Integer.parseInt(req.getParameter("price"));
-        System.out.println("Book is " + book);
-        System.out.println("Price is " + price);
-
-        resp.getWriter().write("Price is "+price+"<br>");
-        resp.getWriter().write("Book is "+book);
-        String jeans = req.getParameter("jeans");
-        System.out.println(jeans);
-        resp.getWriter().write("Book is "+jeans);*/
-
-        Integer categoryID = Integer.parseInt(req.getParameter("categoryID"));
-        Integer subcategoryID = Integer.parseInt(req.getParameter("subcategoryID"));
+        TempUserDetails tempUserDetails = TempUserDetails.tempUserDetails();
+        String sessionIDOfCurrentUser = tempUserDetails.getUserSessionID();
+        String categoryID = req.getParameter("categoryID");
+        String subcategoryID = req.getParameter("subcategoryID");
         String brandID = req.getParameter("brandID");
         String desc = req.getParameter("desc");
-
-        resp.getWriter().write("categoryID is " + categoryID);
-        resp.getWriter().write("subcategoryID " + subcategoryID);
-        resp.getWriter().write("brandID " + brandID);
-        resp.getWriter().write("desc " + desc);
+        String count = req.getParameter("count");
+        System.out.println(count);
+        if (req.getSession().getId().equals(sessionIDOfCurrentUser)) {
+            Cookie category = new Cookie("categoryID", categoryID);
+            Cookie subcategory = new Cookie("subcategoryID", subcategoryID);
+            Cookie brand = new Cookie("brandID", brandID);
+            Cookie description = new Cookie("desc", desc);
+            Cookie countOfItems = new Cookie("count", count);
+            resp.addCookie(category);
+            resp.addCookie(subcategory);
+            resp.addCookie(brand);
+            resp.addCookie(description);
+            resp.addCookie(countOfItems);
+            System.out.println(req.getHeader("referer"));
+            resp.sendRedirect(req.getHeader("referer"));
+        } else {
+            resp.sendRedirect("/login.jsp");
+        }
     }
 }

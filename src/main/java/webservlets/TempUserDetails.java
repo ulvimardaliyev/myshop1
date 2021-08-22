@@ -8,6 +8,7 @@ public class TempUserDetails {
     private String email;
     private String password;
     private String userSessionID;
+    private int selectedItemsCount = 0;
 
     private TempUserDetails() {
 
@@ -18,6 +19,14 @@ public class TempUserDetails {
             tempUserDetails = new TempUserDetails();
         }
         return tempUserDetails;
+    }
+
+    public int getSelectedItemsCount() {
+        return selectedItemsCount;
+    }
+
+    public void setSelectedItemsCount(int selectedItemsCount) {
+        this.selectedItemsCount = selectedItemsCount;
     }
 
     public void setId(int id) {

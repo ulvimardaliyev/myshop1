@@ -23,6 +23,7 @@ public class FilterForLogin implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
+
         response.setContentType("text/html");
         TempUserDetails tempUserDetails = TempUserDetails.tempUserDetails();
         Select selectUser = new Select();
@@ -34,10 +35,12 @@ public class FilterForLogin implements Filter {
             HttpSession session = ((HttpServletRequest) request).getSession();
             Cookie cookie = new Cookie("userIDOnDB", String.valueOf(tempUserDetails.getId()));
             Cookie cookie1 = new Cookie("username", tempUserDetails.getUsername());
+
             ((HttpServletResponse) response).addCookie(cookie);
             ((HttpServletResponse) response).addCookie(cookie1);
             session.setAttribute("username", tempUserDetails.getUsername());
             session.setAttribute("userIDOnDB", String.valueOf(tempUserDetails.getId()));
+            //session.setMaxInactiveInterval(40);
             chain.doFilter(request, response);
         } else {
             PrintWriter printWriter = response.getWriter();

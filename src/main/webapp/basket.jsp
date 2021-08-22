@@ -11,6 +11,31 @@
     <title>Basket</title>
 </head>
 <body>
+<%
+    int defaultUserID = 0;
+    String username = null;
+    Cookie[] cookies = request.getCookies();
 
+    for (Cookie cookie : cookies) {
+        if (cookie.getName().equals("userIDOnDB")) {
+            if (cookie.getValue() != null && !cookie.getValue().isEmpty()) {
+                defaultUserID = Integer.parseInt(cookie.getValue());
+            }
+        } else if (cookie.getName().equals("username")) {
+            username = cookie.getValue();
+        }
+    }
+%>
+<%
+    if (defaultUserID > 0 && username != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("desc")){
+                response.getWriter().write( cookie.getValue()+"<br>");
+            } else if (cookie.getName().equals("count")){
+                response.getWriter().write( cookie.getValue()+"<br>");
+            }
+        }
+    }
+%>
 </body>
 </html>

@@ -20,8 +20,9 @@ public class ProductFilter implements Filter {
         HttpServletRequest request1 = (HttpServletRequest)request;
         if (request1.getSession(false)!=null){
             System.out.println("Filtered");
-            chain.doFilter((HttpServletRequest) request, (HttpServletResponse) response);
+            chain.doFilter(request, response);
         } else {
+            System.out.println("inside else");
             ((HttpServletResponse) response).sendRedirect("/login.jsp");
         }
 

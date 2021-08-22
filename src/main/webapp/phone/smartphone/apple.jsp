@@ -717,6 +717,7 @@
                     <h1>Apple 12</h1>
                     <p class="price">$849.99</p>
                     <p>It is a leap year</p>
+
                     <input type="hidden" name="categoryID" value="1">
                     <input type="hidden" name="subcategoryID" value="1">
                     <input type="hidden" name="brandID" value="2">
@@ -733,8 +734,10 @@
                     <input type="hidden" name="categoryID" value="1">
                     <input type="hidden" name="subcategoryID" value="1">
                     <input type="hidden" name="brandID" value="2">
-                    <input type="hidden" name="desc" value="Apple 12">
+                    <input type="hidden" name="desc" value="Apple12">
+                    <input type="number" name="count">
                     <input type="submit" value="Add to cart" class="input">
+
                 </form>
             </div>
         </div>

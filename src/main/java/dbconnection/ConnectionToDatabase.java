@@ -12,7 +12,7 @@ public class ConnectionToDatabase {
 
     public Connection getConnection() {
         Properties properties = new Properties();
-        File file = new File("C:\\Users\\m.ulvi\\IdeaProjects\\myshop1\\src\\main\\resources\\application.properties");
+        File file = new File("/home/ulvi/IdeaProjects/myshop1/src/main/resources/db/application.properties");
         /*InputStream input =
                 getClass().getClassLoader().getResourceAsStream("application.properties");*/
         try {
